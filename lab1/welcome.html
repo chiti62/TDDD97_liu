@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="client.css" type="text/css" rel="stylesheet">
+    <script src="client.js" type="text/javascript"></script>
+    <script src="serverstub.js" type="text/javascript"></script>
+    <header>
+        <h1>Welcome to Twidder!</h1>
+    </header>
+</head>
+
+
+<body>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
+        <button class="tablinks" onclick="openTab(event, 'Account')">Account</button>
+        <button class="tablinks" onclick="openTab(event, 'Browse')">Browse</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="Home" class="tabcontent">
+        <h3>Your Personal Data</h3>
+        <div>
+            <p id="userprofile"></p>
+        </div>
+
+        <h3>Post a message</h3>
+        <div id="post">
+            <textarea id="postInput" rows="2" cols="60"></textarea>
+            <br>
+            <button onclick="writePost()">POST</button>
+
+        </div>
+
+        <h3>Message Wall</h3>
+        <button onclick="reloadPost()">RELOAD</button>
+        <div id="messagewall">
+            <p id="posts"></p>
+        </div>
+    </div>
+
+    <div id="Account" class="tabcontent">
+        <form Name=ChangePassword>
+            <label>old password :</label>
+            <input type="password" name="oldpassword" id="oldpassword" minlength="4" required />
+            <span id='oldpwmessage'>testing</span>
+            <hr>
+            <label>new password :</label>
+            <input type="password" name="newpassword" id="newpassword" minlength="4" required />
+            <hr>
+            <label>confirm password:
+                <input type="password" name="confirmnewpassword" id="confirmnewpassword" oninput='validatePassword();'
+                    required />
+                <span id='newpwmessage'></span>
+            </label>
+            <button onclick="changePassword()">Change Password</button>
+            <span id='changepwresult'>testingabc</span>
+            <hr>
+            <h4>signOut?</h4>
+            <button onclick="signOut()">Sign Out</button>
+        </form>
+    </div>
+
+    <div id="Browse" class="tabcontent">
+        <label>Search User :</label>
+        <input type="email" name="searchuser" id="searchuser" required />
+        <button onclick="searchUser()">Search</button>
+        <p id="searchresult"></p>
+    </div>
+</body>
+
+</html>

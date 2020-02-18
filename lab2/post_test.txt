@@ -1,0 +1,31 @@
+{
+	"email":"a@a.com",
+	"password":"aaaa"
+}
+
+{
+    "email": "a@a.com",
+    "password": "aaaa",
+    "firstname": "Mike",
+    "familyname": "Ross",
+    "gender": "male",
+    "city": "Linkoping",
+    "country": "Sweden"
+}
+
+{
+    "token": "b8WnVhwSAntNseBYWqvWNw0ETcs3LSiPvFZ7",
+    "email": "a@a.com"
+}
+
+{
+    "token": "96ia5CZ0wSqbGdYw2htnFkeMnuaIXdmafdX5",
+    "oldPassword": "aaaa",
+    "newPassword": "bbbb"
+}
+
+{
+	"token": "96ia5CZ0wSqbGdYw2htnFkeMnuaIXdmafdX5",
+    "email": "b@a.com",
+    "message": "a2b"
+}
