@@ -104,6 +104,7 @@ logIn = function () {
         getUserProfile();
     } else {
         //error display
+        document.getElementById("pwconfirmmsg").innerHTML = response.message;
     }
 }
 
