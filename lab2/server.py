@@ -35,7 +35,8 @@ def sign_up():
     # print(input_email)
     if database_helper.get_user_by_email(input_email) is None:
         password = input_data['password']
-        if
+        if len(password) < 4:
+            json.dumps({"success": False, "message": "Password too short."})
         firstname = input_data['firstname']
         familyname = input_data['familyname']
         gender = input_data['gender']
