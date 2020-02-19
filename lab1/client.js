@@ -158,9 +158,9 @@ changePassword = function () {
         // console.log(response.message);
         validateToken = false;
     }
-    else {
+    // else {
 
-    }
+    // }
     // if (response.success) {
     //     form.reset();
     // }
@@ -178,7 +178,7 @@ writePost = function (toEmail) {
     var userData = serverstub.getUserDataByToken(userToken).data;
 
     // var toEmail = document.getElementById("searchuser").value;
-    console.log(searchUserEmail);
+    // console.log(searchUserEmail);
     if (toEmail == 'own') {
         var post = document.getElementById("postInput").value;
         var message = serverstub.postMessage(userToken, post, userData.email);
@@ -198,7 +198,7 @@ reloadPost = function (ofEmail) {
         var response = serverstub.getUserMessagesByEmail(userToken, searchUserEmail);
         var wall = document.getElementById("posts2");
     }
-    console.log(searchUserEmail);
+    // console.log(searchUserEmail);
     if (response.success) {
         var msgs = response.data;
         var msgUser = ""
