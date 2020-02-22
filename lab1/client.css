@@ -4,7 +4,7 @@ body{
 
 #twidder
 {
-  margin:100px auto;  /*整體置中*/
+  margin:100px auto;  
   width:610px;
   height:410px;
 }
@@ -14,7 +14,7 @@ label
   height: 23px;
   float:left;
   margin-top: 3px;
-  margin-left: 5px;  /*左邊加像素，讓文字不黏在邊框上*/
+  margin-left: 5px;  
   clear:right;
 }
 
@@ -76,13 +76,13 @@ label
   height : 300px;
 }
 
-#word /*設定右下方塊文字 "SIGN UP HERE" */
+#word 
 {
-  text-align: center; /*文字置中*/
-  font-weight: bold;  /*粗體字*/
+  text-align: center; 
+  font-weight: bold;  
 }
 
-select.form-input /*單獨設定下拉選單的大小*/
+select.form-input 
 {
   height:23px;
   width:134px;
