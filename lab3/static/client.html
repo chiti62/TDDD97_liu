@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Twidder</title>
+  <link href="client.css" type="text/css" rel="stylesheet">
+  <script src="client.js" type="text/javascript"></script>
+  <script src="serverstub.js" type="text/javascript"></script>
+
+
+  <script type="text/view" id="welcomeView">
+
+
+  <div id="twidder">
+    <div id="left-square">
+      <img src="wimage.png" alt="Twidder_logo">
+    </div>
+    <div id="right">
+      <div id="right-up">
+        <form onsubmit="logIn(this);return false;">
+          <!-- this? -->
+          　 <label>Email</label><input type="text" id="loginemail" name="loginemail" class="form-input">
+          　 <label>Password</label><input type="password" id="loginpassword" name="loginpassword"
+            class="form-input"><br><br>
+          　 <input type="submit" value="Login" class="buttom1">
+        </form>
+      </div>
+      <div id="right-down">
+        <p id="word">Sign Up Here</p>
+        <form onsubmit="signUp(this);return false;" id="form2">
+          　 <label>First Name</label><input type="text" value="" id="FirstName" name="FirstName" class="form-input"
+            required>
+          　 <label>Family Name</label><input type="text" value="" id="FamilyName" name="FamilyName" class="form-input"
+            required>
+          <label>Gender</label>
+          <br>
+          <select id="Gender" name="Gender" class="form-input">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <label>City</label><input type="text" value="" id="city" name="city" class="form-input" required>
+          <label>Country</label><input type="text" value="" id="country" name="country" class="form-input" required>
+          <label>Email</label><input type="email" value="" id="signupemail" name="signupemail" class="form-input"
+            required>
+          <!-- email validation: type=email -->
+          <label>Password</label><input type="password" id="signuppassword" name="signuppassword" class="form-input" oninput="validatePassword('signup');"
+            required>
+          <div><label>Repeat PWD</label><input type="password" id="confirmpassword" name="confirmpassword"
+              class="form-input" oninput="validatePassword('signup');" required></div>
+             <div>
+              
+            <input type="submit" id="signup" value="SignUp" class="buttom2"></div>
+        </form>
+        <span id='pwconfirmmsg'></span>
+      </div>
+    </div>
+  </div>
+
+</script>
+
+  <script type="text/view" id="profileView">
+  <h1>Welcome to Twidder!</h1>
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
+    <button class="tablinks" onclick="openTab(event, 'Account')">Account</button>
+    <button class="tablinks" onclick="openTab(event, 'Browse')">Browse</button>
+  </div>
+
+  <!-- Tab content -->
+  <div id="Home" class="tabcontent">
+    <h3>Your Personal Data</h3>
+    <div>
+      <p id="userprofile"></p>
+    </div>
+
+    <h3>Post a message</h3>
+    <div id="post">
+      <textarea id="postInput" rows="2" cols="60"></textarea>
+      <br>
+      <button onclick="writePost('own')">POST</button>
+
+    </div>
+
+    <h3>Message Wall</h3>
+    <button onclick="reloadPost('own')">RELOAD</button>
+    <div id="messagewall">
+      <p id="posts"></p>
+    </div>
+  </div>
+
+  <div id="Account" class="tabcontent">
+    <form id="change" onsubmit="changePassword(this); return false;">
+      <label>old password :</label>
+      <input type="password" name="oldpassword" id="oldpassword" minlength="4" required />
+      <span id='oldpwmessage'></span>
+      <hr>
+      <label>new password :</label>
+      <input type="password" name="newpassword" id="newpassword" required />
+      <hr>
+      <label>confirm password:
+        <input type="password" name="confirmnewpassword" id="confirmnewpassword" oninput="validatePassword('change');"
+          required />
+        <span id='newpwmessage'></span>
+      </label>
+      <input type="submit" value="Change password">
+      <span id='changepwresult'></span>
+      <hr>
+      <h4>signOut?</h4>
+      <button onclick="signOut()">Sign Out</button>
+    </form>
+  </div>
+
+  <div id="Browse" class="tabcontent">
+    <label>Search User :</label>
+    <input type="email" name="searchuser" id="searchuser" required />
+    <button onclick="searchUser()">Search</button>
+    
+    <div >
+    <p id="searchresult"></p>
+    </div>  
+    <h3>Post a message</h3>
+    <div>
+      <textarea id="postInput2" rows="2" cols="60"></textarea>
+      <br>
+      <button onclick="writePost('other')">POST</button>
+
+    </div>
+
+    <h3>Message Wall</h3>
+    <button onclick="reloadPost('other')">RELOAD</button>
+    <div id="messagewall2">
+      <p id="posts2"></p>
+    </div>
+    
+  </div>
+  </script>
+</head>
+
+<body>
+  <div id="container"></div>
+</body>
+
+</html>
