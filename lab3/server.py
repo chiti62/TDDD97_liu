@@ -2,20 +2,35 @@ from flask import Flask, request, jsonify
 import database_helper
 import json
 import random
+from gevent.pywsgi import WSGIServer
+from geventwebsocket.handler import WebSocketHandler
 
 app = Flask(__name__)
 
 app.debug = True
+logged_user = {}
+
+
+@app.route("/")
+def root():
+    return app.send_static_file(filename="client.html")
 
 
 @app.route("/signin", methods=['POST', 'GET'])
 def sign_in():
+    print("sign in")
     input_data = request.get_json()
     input_email = input_data['email']
     input_password = input_data['password']
 
     db_user = database_helper.get_user_by_email(input_email)
     if (db_user is not None and db_user['password'] == input_password):
+        # if input_email in logged_user:
+        #     message = {'message': "logged in other place"}
+        #     try:
+        #         logged_user[input_email].send(json.dumps(message))
+        #     except:
+        #         pass
         # token = create token
         letters = "abcdefghiklmnopqrstuvwwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
         token = ""
@@ -64,7 +79,7 @@ def sign_out():
 
 
 @app.route("/changepassword", methods=["POST"])
-def Change_password():
+def change_password():
     input_data = request.get_json()
     token = input_data['token']
     email = database_helper.get_email_by_token(token)
@@ -80,7 +95,7 @@ def Change_password():
         return json.dumps({"success": False, "message": "You are not logged in."})
 
 
-@app.route("/get_user_data_by_token", methods=["POST"])
+@app.route("/get_user_data_by_token", methods=["POST", "GET"])
 def get_user_data_by_token():
     input_data = request.get_json()
     token = input_data['token']
@@ -154,6 +169,8 @@ def post_message():
     fromEmail = database_helper.get_email_by_token(token)
     if fromEmail is not None:
         toEmail = input_data['email']
+        if toEmail == "own":
+            toEmail = fromEmail
         if database_helper.get_user_by_email(toEmail) is not None:
             database_helper.save_message(fromEmail, toEmail, message)
             return json.dumps({"success": True, "message": "Message posted"})
@@ -164,5 +181,31 @@ def post_message():
     return False
 
 
+@app.route('/echo')
+def echo_socket():
+    if request.environ.get('wsgi.websocket'):
+        ws = request.environ['wsgi.websocket']
+        while True:
+            try:
+                message = json.loads(ws.receive())
+            except:
+                break  # why stuck?
+            if message is not None:
+                user_email = message['email']
+                print(user_email)
+                if user_email in logged_user:
+                    prev_socket = logged_user[user_email]
+                    try:
+                        prev_socket.send(json.dumps(
+                            {"message": "logged in elsewhere"}))
+                    except:
+                        pass
+                logged_user[user_email] = ws
+
+    return None
+
+
 if __name__ == "__main__":
-    app.run()
+    app.debug = True
+    http_server = WSGIServer(('', 5000), app, handler_class=WebSocketHandler)
+    http_server.serve_forever()

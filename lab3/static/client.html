@@ -3,9 +3,9 @@
 
 <head>
   <title>Twidder</title>
-  <link href="client.css" type="text/css" rel="stylesheet">
-  <script src="client.js" type="text/javascript"></script>
-  <script src="serverstub.js" type="text/javascript"></script>
+  <link href="static/client.css" type="text/css" rel="stylesheet">
+  <script src="static/client.js" type="text/javascript"></script>
+  <!-- <script src="serverstub.js" type="text/javascript"></script> -->
 
 
   <script type="text/view" id="welcomeView">
@@ -13,7 +13,7 @@
 
   <div id="twidder">
     <div id="left-square">
-      <img src="wimage.png" alt="Twidder_logo">
+      <img src="static/wimage.png" alt="Twidder_logo">
     </div>
     <div id="right">
       <div id="right-up">
@@ -22,7 +22,7 @@
           　 <label>Email</label><input type="text" id="loginemail" name="loginemail" class="form-input">
           　 <label>Password</label><input type="password" id="loginpassword" name="loginpassword"
             class="form-input"><br><br>
-          　 <input type="submit" value="Login" class="buttom1">
+          　 <input type="submit" value="Login" id="login" class="buttom1">
         </form>
       </div>
       <div id="right-down">
@@ -61,9 +61,9 @@
   <script type="text/view" id="profileView">
   <h1>Welcome to Twidder!</h1>
   <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
-    <button class="tablinks" onclick="openTab(event, 'Account')">Account</button>
-    <button class="tablinks" onclick="openTab(event, 'Browse')">Browse</button>
+    <button class="tablinks" id="hometab" onclick="openTab(event, 'Home')">Home</button>
+    <button class="tablinks" id="accounttab" onclick="openTab(event, 'Account')">Account</button>
+    <button class="tablinks" id="browsetab" onclick="openTab(event, 'Browse')">Browse</button>
   </div>
 
   <!-- Tab content -->
@@ -77,12 +77,12 @@
     <div id="post">
       <textarea id="postInput" rows="2" cols="60"></textarea>
       <br>
-      <button onclick="writePost('own')">POST</button>
+      <button id="post_own" onclick="writePost('own')">POST</button>
 
     </div>
 
     <h3>Message Wall</h3>
-    <button onclick="reloadPost('own')">RELOAD</button>
+    <button id="reload_own" onclick="reloadPost('own')">RELOAD</button>
     <div id="messagewall">
       <p id="posts"></p>
     </div>
@@ -102,18 +102,18 @@
           required />
         <span id='newpwmessage'></span>
       </label>
-      <input type="submit" value="Change password">
+      <input type="submit" id="changepassword_button" value="Change password">
       <span id='changepwresult'></span>
       <hr>
       <h4>signOut?</h4>
-      <button onclick="signOut()">Sign Out</button>
+      <button id="signout_button" onclick="signOut()">Sign Out</button>
     </form>
   </div>
 
   <div id="Browse" class="tabcontent">
     <label>Search User :</label>
     <input type="email" name="searchuser" id="searchuser" required />
-    <button onclick="searchUser()">Search</button>
+    <button id="search_button" onclick="searchUser()">Search</button>
     
     <div >
     <p id="searchresult"></p>
@@ -122,12 +122,12 @@
     <div>
       <textarea id="postInput2" rows="2" cols="60"></textarea>
       <br>
-      <button onclick="writePost('other')">POST</button>
+      <button id="post_other" onclick="writePost('other')">POST</button>
 
     </div>
 
     <h3>Message Wall</h3>
-    <button onclick="reloadPost('other')">RELOAD</button>
+    <button id="reload_other" onclick="reloadPost('other')">RELOAD</button>
     <div id="messagewall2">
       <p id="posts2"></p>
     </div>
