@@ -367,7 +367,7 @@ searchUser = function () {
 }
 
 socketConnection = function () {
-    var socket = new WebSocket("ws://127.0.0.1:5000/echo");
+    var socket = new WebSocket("ws://127.0.0.1:5000/socket");
     socket.onopen = function () {
         console.log("socket open");
         var xmlhttp = new XMLHttpRequest();

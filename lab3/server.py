@@ -181,15 +181,15 @@ def post_message():
     return False
 
 
-@app.route('/echo')
-def echo_socket():
+@app.route('/socket')
+def socket():
     if request.environ.get('wsgi.websocket'):
         ws = request.environ['wsgi.websocket']
         while True:
             try:
                 message = json.loads(ws.receive())
             except:
-                break  # why stuck?
+                break
             if message is not None:
                 user_email = message['email']
                 print(user_email)
