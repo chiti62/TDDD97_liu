@@ -1,11 +1,10 @@
+from __init__ import app
 from flask import Flask, request, jsonify
 import database_helper
 import json
 import random
 from gevent.pywsgi import WSGIServer
 from geventwebsocket.handler import WebSocketHandler
-
-app = Flask(__name__)
 
 app.debug = True
 logged_user = {}
@@ -209,6 +208,7 @@ def socket():
 
 
 if __name__ == "__main__":
+    init()
     app.debug = True
     http_server = WSGIServer(('', 5000), app, handler_class=WebSocketHandler)
     http_server.serve_forever()
