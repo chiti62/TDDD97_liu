@@ -379,28 +379,30 @@ searchUser = function () {
 }
 
 socketConnection = function () {
-    var socket = new WebSocket("ws://127.0.0.1:5000/echo");
+    var socket = new WebSocket("ws://127.0.0.1:5000/socket");
     socket.onopen = function () {
         console.log("socket open");
-        var xmlhttp = new XMLHttpRequest();
+        // var xmlhttp = new XMLHttpRequest();
 
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var response = JSON.parse(xmlhttp.responseText);
-                if (response.success) {
-                    var email = response.data.email
-                    console.log(email)
-                    socket.send(JSON.stringify({ 'email': email }));
-                } else {
-                    console.log(response.message);
-                }
-            }
-        };
+        // xmlhttp.onreadystatechange = function () {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         var response = JSON.parse(xmlhttp.responseText);
+        //         if (response.success) {
+        //             var email = response.data.email
+        //             console.log(email)
+        //             socket.send(JSON.stringify({ 'email': email }));
+        //         } else {
+        //             console.log(response.message);
+        //         }
+        //     }
+        // };
 
-        var sendtoken = { "token": userToken };
-        xmlhttp.open("POST", "/get_user_data_by_token", true);
-        xmlhttp.setRequestHeader("Content-Type", "application/json");
-        xmlhttp.send(JSON.stringify(sendtoken));
+        // var sendtoken = { "token": userToken };
+        // xmlhttp.open("POST", "/get_user_data_by_token", true);
+        // xmlhttp.setRequestHeader("Content-Type", "application/json");
+        // xmlhttp.send(JSON.stringify(sendtoken));
+        console.log(userToken)
+        socket.send(JSON.stringify({ "token": userToken }));
 
     };
 
