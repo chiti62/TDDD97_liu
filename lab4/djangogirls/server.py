@@ -181,26 +181,29 @@ def post_message():
     return False
 
 
-@app.route('/echo')
-def echo_socket():
+@app.route('/socket')
+def socket():
     if request.environ.get('wsgi.websocket'):
         ws = request.environ['wsgi.websocket']
         while True:
             try:
                 message = json.loads(ws.receive())
             except:
-                break  # why stuck?
+                break
             if message is not None:
-                user_email = message['email']
+                user_token = message["token"]
+                print(user_token)
+                user_email = database_helper.get_email_by_token(user_token)
                 print(user_email)
-                if user_email in logged_user:
-                    prev_socket = logged_user[user_email]
-                    try:
-                        prev_socket.send(json.dumps(
-                            {"message": "logged in elsewhere"}))
-                    except:
-                        pass
-                logged_user[user_email] = ws
+                for logged_token in logged_user:
+                    if user_email == database_helper.get_email_by_token(logged_token):
+                        prev_socket = logged_user[logged_token]
+                        try:
+                            prev_socket.send(json.dumps(
+                                {"message": "logged in elsewhere"}))
+                        except:
+                            pass
+                logged_user[user_token] = ws
 
     return None
 

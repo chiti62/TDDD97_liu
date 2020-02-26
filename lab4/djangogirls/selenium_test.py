@@ -39,7 +39,7 @@ def sign_up(firstname, familyname, gender, city, country, email, password, confi
     confirm_password_input.send_keys(confirm_password)
 
     sign_up_button.click()
-    time.sleep(1)
+    time.sleep(3)
 
 
 def sign_in(email, password):
@@ -54,7 +54,7 @@ def sign_in(email, password):
     password_input.send_keys(password)
 
     login_button.click()
-    time.sleep(1)
+    time.sleep(3)
 
 
 def post_message(own, message):
@@ -72,7 +72,7 @@ def post_message(own, message):
     post_input.send_keys(message)
     post_button.click()
     reload_button.click()
-    time.sleep(1)
+    time.sleep(3)
 
 
 def change_password(oldpassword, newpassword, confirm_newpassword):
@@ -90,7 +90,7 @@ def change_password(oldpassword, newpassword, confirm_newpassword):
     newpassword_input.send_keys(newpassword)
     confirm_newpassword_input.send_keys(confirm_newpassword)
     change_button.click()
-    time.sleep(1)
+    time.sleep(3)
 
 
 def select_tab(tabname):
@@ -102,14 +102,14 @@ def select_tab(tabname):
         tab_button = browser.find_element_by_id("browsetab")
 
     tab_button.click()
-    time.sleep(1)
+    time.sleep(3)
 
 
 def log_out():
     logout_button = browser.find_element_by_id("signout_button")
 
     logout_button.click()
-    time.sleep(1)
+    time.sleep(3)
 
 
 def search_user(email):
@@ -120,7 +120,7 @@ def search_user(email):
 
     search_input.send_keys(email)
     search_button.click()
-    time.sleep(1)
+    time.sleep(3)
 
 
 if __name__ == "__main__":
@@ -131,7 +131,7 @@ if __name__ == "__main__":
     # select_tab(tabname="account")
     # change_password('aaaa', 'bbbb', 'bbbb')
     # change_password('bbbb', 'aaaa', 'aaaa')
-    # # log_out()
+    # log_out()
     select_tab(tabname="browse")
     search_user('d@d.com')
     # post_message(own=False, message=str(datetime.datetime.now()))
