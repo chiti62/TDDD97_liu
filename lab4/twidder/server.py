@@ -6,7 +6,7 @@ import random
 from gevent.pywsgi import WSGIServer
 from geventwebsocket.handler import WebSocketHandler
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.', static_folder='static')
 app.debug = True
 logged_user = {}
 
