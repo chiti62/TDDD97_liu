@@ -1,3 +1,6 @@
+// const API_URL = 'http://localhost:5000';
+// const API_URL = 'https://tddd97-chiti602.herokuapp.com';
+
 var userToken = null;
 var searchUserEmail = '';
 var validateToken = false;//password validate
@@ -367,7 +370,7 @@ searchUser = function () {
 }
 
 socketConnection = function () {
-    var socket = new WebSocket("ws://127.0.0.1:5000/echo");
+    var socket = new WebSocket("ws://tddd97-chiti602.herokuapp.com/socket");
     socket.onopen = function () {
         console.log("socket open");
         // var xmlhttp = new XMLHttpRequest();

@@ -305,7 +305,7 @@ reloadPost = function (ofEmail) {
                 if (response.success) {
                     var msgs = response.data;
                     console.log(msgs);
-                    var msgUser = ""
+                    var msgUser = "";
                     for (i = 0; i < msgs.length; i++) {
                         msgUser = msgUser + "User " + msgs[i].sender + ": " + msgs[i].message + "<br>"
                     }
