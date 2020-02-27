@@ -370,7 +370,7 @@ searchUser = function () {
 }
 
 socketConnection = function () {
-    var socket = new WebSocket("ws://tddd97-chiti602.herokuapp.com/socket");
+    var socket = new WebSocket("wss://tddd97-chiti602.herokuapp.com/socket");
     socket.onopen = function () {
         console.log("socket open");
         // var xmlhttp = new XMLHttpRequest();
